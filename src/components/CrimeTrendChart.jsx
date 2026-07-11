@@ -8,15 +8,7 @@ import {
   ResponsiveContainer 
 } from "recharts";
 import { TrendingUp } from "lucide-react";
-
-const data = [
-  { month: "Jan", crimes: 20 },
-  { month: "Feb", crimes: 35 },
-  { month: "Mar", crimes: 28 },
-  { month: "Apr", crimes: 45 },
-  { month: "May", crimes: 38 },
-  { month: "Jun", crimes: 50 },
-];
+import { crimeTrendData } from "../data/trendData";
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -52,7 +44,7 @@ function CrimeTrendChart() {
       </div>
       <div className="chart-container-wrapper" style={{ flexGrow: 1, minHeight: "260px" }}>
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <LineChart data={crimeTrendData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
             <XAxis 
               dataKey="month" 

@@ -7,26 +7,28 @@ import {
   Legend
 } from "recharts";
 import { PieChart as PieIcon } from "lucide-react";
-
-const data = [
-  { name: "Murder", value: 15 },
-  { name: "Robbery", value: 25 },
-  { name: "Cyber Crime", value: 30 },
-  { name: "Fraud", value: 20 },
-  { name: "Kidnapping", value: 10 },
-];
+import { districtCrimeData } from "../data/crimeData";
 
 // Curated Police Command Center color palette
 const COLORS = [
-  "#ef4444", // Murder - Red
-  "#f59e0b", // Robbery - Amber
-  "#06b6d4", // Cyber Crime - Cyan
-  "#2563eb", // Fraud - Accent Blue
-  "#8b5cf6", // Kidnapping - Purple
+  "#ef4444", // Red
+  "#f59e0b", // Amber
+  "#06b6d4", // Cyan
+  "#2563eb", // Accent Blue
+  "#8b5cf6", // Purple
+  "#10b981", // Emerald
+  "#ec4899", // Pink
+  "#6366f1"  // Indigo
 ];
+
+const totalCrimesVal = districtCrimeData.reduce((acc, curr) => acc + curr.crimes, 0);
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
+    const value = payload[0].value;
+    const name = payload[0].name;
+    const percentage = totalCrimesVal > 0 ? ((value / totalCrimesVal) * 100).toFixed(0) : 0;
+    
     return (
       <div 
         style={{ 
@@ -38,9 +40,9 @@ const CustomTooltip = ({ active, payload }) => {
           fontSize: "0.85rem"
         }}
       >
-        <p style={{ fontWeight: "600", margin: "0", color: "#1e293b" }}>{payload[0].name}</p>
+        <p style={{ fontWeight: "600", margin: "0", color: "#1e293b" }}>{name}</p>
         <p style={{ margin: "4px 0 0 0", color: "#2563eb", fontWeight: "700" }}>
-          {payload[0].value} Cases ({((payload[0].value / 100) * 100).toFixed(0)}%)
+          {value} Cases ({percentage}%)
         </p>
       </div>
     );
@@ -61,15 +63,16 @@ function CrimePieChart() {
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
-              data={data}
+              data={districtCrimeData}
               cx="50%"
               cy="50%"
               innerRadius={60}
               outerRadius={90}
               paddingAngle={4}
-              dataKey="value"
+              dataKey="crimes"
+              nameKey="district"
             >
-              {data.map((entry, index) => (
+              {districtCrimeData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={COLORS[index % COLORS.length]}

@@ -1,10 +1,13 @@
+import CrimeHotspots from "../components/CrimeHotspots";
+import RecentCases from "../components/RecentCases";
+import CrimeTable from "../components/CrimeTable";
+import DashboardCards from "../components/DashboardCards";
 import DistrictCrimeChart from "../components/DistrictCrimeChart";
 import CrimeTrendChart from "../components/CrimeTrendChart";
 import CrimePieChart from "../components/CrimePieChart";
 import StatsCard from "../components/StatsCard";
 import CrimeRecordsTable from "../components/CrimeRecordsTable";
 import RecentCasesTable from "../components/RecentCasesTable";
-import CrimeHotspots from "../components/CrimeHotspots";
 import AIInsightsPanel from "../components/AIInsightsPanel";
 import DistrictDrilldown from "../components/DistrictDrilldown";
 import PredictiveAnalytics from "../components/PredictiveAnalytics";
@@ -19,7 +22,7 @@ function Dashboard({ activeTab = "overview", setActiveTab, searchQuery = "" }) {
           <div style={{ display: "flex", flexDirection: "column", gap: "24px", animation: "fadeIn 0.3s ease-in-out" }}>
             <div className="dashboard-header">
               <div className="dashboard-title-area">
-                <h2>Statistical Crime Intelligence</h2>
+                <h2>Statistical Crime Analytics</h2>
                 <span className="dashboard-subtitle">Historical case records, district crime tallies, and monthly trends</span>
               </div>
             </div>
@@ -72,14 +75,25 @@ function Dashboard({ activeTab = "overview", setActiveTab, searchQuery = "" }) {
           <div style={{ display: "flex", flexDirection: "column", gap: "24px", animation: "fadeIn 0.3s ease-in-out" }}>
             <div className="dashboard-header">
               <div className="dashboard-title-area">
-                <h2>Recent Incident Log</h2>
-                <span className="dashboard-subtitle">Real-time police dispatch, officer assignments, and active logs</span>
+                <h2>Recent Incident Log & Registries</h2>
+                <span className="dashboard-subtitle">Real-time police dispatch feed, case records table, and historical listings</span>
               </div>
             </div>
             
+            {/* Live Dispatch Feed and Crime Records */}
             <div className="tables-grid">
               <CrimeRecordsTable searchQuery={searchQuery} />
               <RecentCasesTable />
+            </div>
+
+            {/* Preserving existing basic table/recent cases elements */}
+            <div className="tables-grid">
+              <div className="dashboard-card">
+                <RecentCases />
+              </div>
+              <div className="dashboard-card">
+                <CrimeTable />
+              </div>
             </div>
           </div>
         );
@@ -142,6 +156,11 @@ function Dashboard({ activeTab = "overview", setActiveTab, searchQuery = "" }) {
                   <Sparkles size={14} /> AI Forecasts
                 </button>
               </div>
+            </div>
+
+            {/* Preserved basic layout cards at top of overview */}
+            <div style={{ paddingBottom: "10px" }}>
+              <DashboardCards />
             </div>
 
             {/* KPI Stats Cards - Preserving previous + adding requested */}

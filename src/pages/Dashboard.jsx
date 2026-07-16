@@ -11,7 +11,9 @@ import RecentCasesTable from "../components/RecentCasesTable";
 import AIInsightsPanel from "../components/AIInsightsPanel";
 import DistrictDrilldown from "../components/DistrictDrilldown";
 import PredictiveAnalytics from "../components/PredictiveAnalytics";
-import { Database, Eye, Shield, Brain, Landmark, Clock, Settings, Sparkles, ShieldAlert } from "lucide-react";
+import { Database, Eye, Shield, Brain, Landmark, Clock, Settings as SettingsIcon, Sparkles, ShieldAlert } from "lucide-react";
+import Settings from "../components/Settings";
+import CrimeBarChart from "../components/CrimeBarChart";
 
 function Dashboard({ activeTab = "overview", setActiveTab, searchQuery = "" }) {
   // Render sub-views based on active sidebar tab selection
@@ -67,6 +69,10 @@ function Dashboard({ activeTab = "overview", setActiveTab, searchQuery = "" }) {
               <DistrictDrilldown searchQuery={searchQuery} />
               <DistrictCrimeChart />
             </div>
+
+            <div style={{ minHeight: "360px" }}>
+              <CrimeBarChart />
+            </div>
           </div>
         );
 
@@ -117,16 +123,14 @@ function Dashboard({ activeTab = "overview", setActiveTab, searchQuery = "" }) {
 
       case "settings":
         return (
-          <div className="dashboard-card" style={{ padding: "40px", textAlign: "center", animation: "fadeIn 0.3s ease-in-out" }}>
-            <Settings size={48} className="text-secondary" style={{ margin: "0 auto 20px", display: "block" }} />
-            <h2>Command Center Settings</h2>
-            <p style={{ color: "var(--text-secondary)", marginTop: "10px", maxWidth: "500px", margin: "10px auto 0" }}>
-              Configure alert levels, patrol boundary radii, reporting schedules, and notification dispatch profiles for officer squads.
-            </p>
-            <div style={{ display: "flex", gap: "10px", justifyContent: "center", marginTop: "24px" }}>
-              <button className="pagination-btn" style={{ borderColor: "var(--color-accent)", color: "var(--color-accent)" }}>Backup Database</button>
-              <button className="pagination-btn">Alert Rules</button>
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px", animation: "fadeIn 0.3s ease-in-out" }}>
+            <div className="dashboard-header">
+              <div className="dashboard-title-area">
+                <h2>Settings Portal</h2>
+                <span className="dashboard-subtitle">Manage officer rank details, alerts profile, and system configurations</span>
+              </div>
             </div>
+            <Settings />
           </div>
         );
 

@@ -395,7 +395,7 @@ function App() {
               <div style={{ width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "var(--color-accent)", color: "white", display: "flex", alignItems: "center", justifySpace: "center", fontWeight: "700", fontSize: "0.85rem" }}>
                 {currentUser.name[0]}
               </div>
-              <span style={{ fontSize: "0.85rem", fontWeight: "600" }}>{currentUser.name.split(" ")[0]}</span>
+              <span style={{ fontSize: "0.85rem", fontWeight: "600" }}>{currentUser.name}</span>
               <ChevronDown size={14} className="text-secondary" />
             </div>
 

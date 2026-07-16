@@ -27,10 +27,9 @@ import "./App.css";
 
 // Government logo crest SVG string
 const KSP_EMBLEM_SVG = `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="50" cy="50" r="46" fill="#081229" stroke="#fbbf24" stroke-width="3"/>
-  <path d="M50 18 L68 28 V52 C68 64 50 78 50 78 C50 78 32 64 32 52 V28 L50 18 Z" fill="#1e3a8a" stroke="#fbbf24" stroke-width="2"/>
-  <path d="M50 25 L55 35 H65 L57 42 L60 52 L50 45 L40 52 L43 42 L35 35 H45 L50 25 Z" fill="#fbbf24"/>
-  <text x="50" y="88" font-family="system-ui" font-size="7" font-weight="900" fill="#fbbf24" text-anchor="middle">K.S.P.</text>
+  <circle cx="50" cy="50" r="44" fill="#081229" stroke="#fbbf24" stroke-width="4"/>
+  <path d="M50 20 L70 30 V52 C70 64 50 76 50 76 C50 76 30 64 30 52 V30 Z" fill="#1e3a8a" stroke="#fbbf24" stroke-width="3"/>
+  <path d="M50 28 L53 38 H63 L55 44 L58 54 L50 48 L42 54 L45 44 L37 38 H47 Z" fill="#fbbf24"/>
 </svg>`;
 
 function App() {
